@@ -17,7 +17,6 @@ namespace InvoiceManager.Models.Domains
         public string Name { get; set; }
         public decimal Value { get; set; }
 
-
         public ICollection<InvoicePosition> InvoicePositions { get; set; }
     }
 }

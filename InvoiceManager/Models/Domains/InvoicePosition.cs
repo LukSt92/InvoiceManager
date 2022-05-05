@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,8 +13,14 @@ namespace InvoiceManager.Models.Domains
 
         public int Lp { get; set; }
         public int InvoiceId { get; set; }
+
+        [Display(Name = "Wartość")]
         public decimal Value { get; set; }
+
+        [Display(Name = "Produkt")]
         public int ProductId { get; set; }
+
+        [Display(Name = "Ilość")]
         public int Quantity { get; set; }
 
 

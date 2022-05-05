@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace InvoiceManager.Models
+namespace InvoiceManager.Models.Domains
 {
     public class MethodofPayment
     {
