@@ -102,6 +102,12 @@ namespace InvoiceManager.Controllers
             var userId = User.Identity.GetUserId();
             invoice.UserId = userId;
 
+            if (!ModelState.IsValid)
+            {
+                var vm = PrepareInvoiceVm(invoice, userId);
+                return View("Invoice", vm);
+            }
+
             if (invoice.Id == 0)
                 _invoiceRepository.Add(invoice);
             else
@@ -117,6 +123,12 @@ namespace InvoiceManager.Controllers
 
             var product = _productRepository
                 .GetProduct(invoicePosition.ProductId);
+
+            if (!ModelState.IsValid)
+            {
+                var vm = PrepareInvoicePositionVm(invoicePosition);
+                return View("Invoice", vm);
+            }
 
             invoicePosition.Value = invoicePosition.Quantity * product.Value;
 
