@@ -101,9 +101,34 @@
         function generatePdf() {
         }
 
-        function deleteInvoicePosition() {
+        function deleteInvoicePosition(id, invoiceId, btn) {
             if (!confirm("Czy na pewno chcesz usunąć pozycję?"))
                 return;
+
+            $.ajax({
+            type: 'POST',
+            url: "@Url.Action("DeletePosition", "Home")",
+            data: {
+                id: id,
+                invoiceid: invoiceId
+            },
+            success: function (data) {
+                if (data.Success) {
+                    var row = btn.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                                        
+                    $('#Invoice_Value').val(data.InvoiceValue.toFixed(2).replace(".", ","));
+
+                } else {
+                    alert(data.Message);
+                }
+            },
+            error: function (data) {
+                alert(data.Message);
+            },
+            dataType: 'json'
+
+        });
         }
 
         $(document).ready(function () {
