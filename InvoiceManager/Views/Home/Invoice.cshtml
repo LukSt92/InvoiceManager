@@ -15,6 +15,10 @@
     <button class="btn btn-secondary mb-3" onclick="generatePdf()">
         Generuj PDF
     </button>
+
+    <button type="button" class="btn btn-warning mb-3" onclick='window.location.href="@Url.Action("PrintInvoice", "Print", new { id = Model.Invoice.Id })"'>
+        Drukuj
+    </button>
 }
 
 <div class="row">
@@ -113,7 +117,7 @@
             type: 'POST',
             url: "@Url.Action("InvoiceToPdf", "Print")",
                 data: {
-                    id: '@Model.Invoice.Id'
+                id: '@Model.Invoice.Id'
             },
                 success: function (data) {
                     window.location = '@Url.Action("DownloadInvoicePdf", "Print")'
