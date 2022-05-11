@@ -47,9 +47,7 @@ namespace InvoiceManager.Controllers
             var userId = User.Identity.GetUserId();
             var invoice = _invoiceRepository.GetInvoice(id, userId);
 
-            var pdfResult = new ViewAsPdf("InvoiceTemplate", invoice);
-
-            return pdfResult;
+            return View("InvoiceTemplate", invoice);
         }
 
         public ActionResult DownloadInvoicePdf(string fileGuid, string fileName)

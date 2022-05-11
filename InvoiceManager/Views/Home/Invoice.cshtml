@@ -16,7 +16,7 @@
         Generuj PDF
     </button>
 
-    <button type="button" class="btn btn-warning mb-3" onclick='window.location.href="@Url.Action("PrintInvoice", "Print", new { id = Model.Invoice.Id })"'>
+    <button type="button" class="btn btn-warning mb-3" onclick="printInvoice()">
         Drukuj
     </button>
 }
@@ -110,6 +110,19 @@
 @section Scripts
 {
     <script type="text/javascript">
+
+        function printInvoice() {
+            var url = '@Url.Action("PrintInvoice", "Print")' +
+                '?id=' + '@Model.Invoice.Id';
+
+            var myWindow = window.open(url, '', 'width=800,height=600');
+            myWindow.onload = function () {
+                myWindow.print();
+                myWindow.onafterprint = function () {
+                    myWindow.close();
+                };
+            };
+        }
 
         function generatePdf() {
 
