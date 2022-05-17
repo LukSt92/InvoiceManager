@@ -78,11 +78,13 @@ namespace InvoiceManager.Controllers
 
         private EditInvoicePositionViewModel PrepareInvoicePositionVm(InvoicePosition invoicePosition)
         {
+            var userId = User.Identity.GetUserId();
+
             return new EditInvoicePositionViewModel
             {
                 InvoicePosition = invoicePosition,
                 Heading = invoicePosition.Id == 0 ? "Dodawanie nowej pozycji" : "Pozycja",
-                Products = _productRepository.GetProducts()
+                Products = _productRepository.GetProducts(userId)
             };
         }
 
@@ -124,7 +126,7 @@ namespace InvoiceManager.Controllers
             var userId = User.Identity.GetUserId();
 
             var product = _productRepository
-                .GetProduct(invoicePosition.ProductId);
+                .GetProduct(invoicePosition.ProductId, userId);
 
             if (!ModelState.IsValid)
             {
@@ -199,6 +201,86 @@ namespace InvoiceManager.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Product()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var products = _productRepository.GetProducts(userId);
+
+            return View(products);
+        }
+
+        public ActionResult AddEditProduct(int id = 0)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var product = id == 0 ?
+                GetNewProduct(userId) :
+                _productRepository.GetProduct(id, userId);
+
+            var pvm = PrepareProductVm(product, userId);
+
+            return View(pvm);
+        }
+
+        private EditProductViewModel PrepareProductVm(
+            Product product, string userId)
+        {
+            return new EditProductViewModel
+            {
+                Product = product,
+                Heading = product.Id == 0 ? "Dodawanie nowego produktu" : "Produkt",
+            };
+        }
+
+        private Product GetNewProduct(string userId)
+        {
+            return new Product
+            {
+                UserId = userId,
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddEditProduct(Product product)
+        {
+            var userId = User.Identity.GetUserId();
+            product.UserId = userId;
+
+            if (!ModelState.IsValid)
+            {
+                var pvm = PrepareProductVm(product, userId);
+
+                return View("AddEditProduct", pvm);
+            }
+
+            if (product.Id == 0)
+                _productRepository.Add(product);
+            else
+                _productRepository.Update(product);
+
+            return RedirectToAction("Product");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(int id)
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                _productRepository.Delete(id, userId);
+            }
+            catch (Exception exception)
+            {
+                //logowanie
+                return Json(new { Success = false, Message = exception.Message }); ;
+            }
+
+
+            return Json(new { Success = true });
         }
     }
 }

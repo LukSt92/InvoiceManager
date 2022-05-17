@@ -186,6 +186,14 @@
     <Compile Include="Migrations\202205052030090_test02.designer.cs">
       <DependentUpon>202205052030090_test02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205171910501_1705.cs" />
+    <Compile Include="Migrations\202205171910501_1705.designer.cs">
+      <DependentUpon>202205171910501_1705.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205172028093_test170502.cs" />
+    <Compile Include="Migrations\202205172028093_test170502.designer.cs">
+      <DependentUpon>202205172028093_test170502.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domains\Address.cs" />
     <Compile Include="Models\Domains\Client.cs" />
@@ -201,6 +209,7 @@
     <Compile Include="Models\ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ViewModels\EditInvoicePositionViewModel.cs" />
     <Compile Include="Models\ViewModels\EditInvoiceViewModel.cs" />
+    <Compile Include="Models\ViewModels\EditProductViewModel.cs" />
     <Compile Include="Models\ViewModels\FactorViewModel.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageLoginsViewModel.cs" />
@@ -400,6 +409,8 @@
     <Content Include="Views\Home\_InvoicePosition.cshtml" />
     <Content Include="Views\Home\InvoicePosition.cshtml" />
     <Content Include="Views\Print\InvoiceTemplate.cshtml" />
+    <Content Include="Views\Home\AddEditProduct.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -440,6 +451,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205052030090_test02.resx">
       <DependentUpon>202205052030090_test02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171910501_1705.resx">
+      <DependentUpon>202205171910501_1705.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205172028093_test170502.resx">
+      <DependentUpon>202205172028093_test170502.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

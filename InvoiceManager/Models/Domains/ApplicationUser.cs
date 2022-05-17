@@ -16,7 +16,7 @@ namespace InvoiceManager.Models
         {
             Invoices = new Collection<Invoice>();
             Clients = new Collection<Client>();
-
+            Products = new Collection<Product>();
         }
 
         [Required]
@@ -28,6 +28,8 @@ namespace InvoiceManager.Models
 
         public ICollection<Invoice> Invoices { get; set; }
         public ICollection<Client> Clients { get; set; }
+
+        public ICollection<Product> Products { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

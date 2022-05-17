@@ -102,7 +102,7 @@ namespace InvoiceManager.Models.Repositories
                     .Include(x => x.Product)
                     .Include(x => x.Invoice)
                     .Single(x =>
-                        x.Id == invoicePosition.Id && x.Invoice.UserId ==      userId);
+                        x.Id == invoicePosition.Id && x.Invoice.UserId == userId);
 
                 positionToUpdate.Lp = invoicePosition.Lp;
                 positionToUpdate.ProductId = invoicePosition.ProductId;
