@@ -1,10 +1,9 @@
-﻿using InvoiceManager.Models.Domains;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace InvoiceManager.Models
+namespace InvoiceManager.Models.Domains
 {
     public class Client
     {

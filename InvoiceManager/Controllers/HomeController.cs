@@ -282,5 +282,82 @@ namespace InvoiceManager.Controllers
 
             return Json(new { Success = true });
         }
+
+        public ActionResult Client()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var clients = _clientRepository.GetClients(userId);
+
+            return View(clients);
+        }
+
+        public ActionResult AddEditClient (int id = 0)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var client = id == 0 ?
+                GetNewClient(userId) :
+                _clientRepository.GetClient(id, userId);
+
+            var cvm = PrepareClientVm(client, userId);
+
+            return View(cvm);
+        }
+
+        private EditClientViewModel PrepareClientVm( Client client, string userId)
+        {
+            return new EditClientViewModel
+            {
+                Client = client,
+                Heading = client.Id == 0 ? "Dodawanie nowego klienta" : "Klient",
+            };
+        }
+
+        private Client GetNewClient(string userId)
+        {
+            return new Client
+            {
+                UserId = userId
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddEditClient(Client client)
+        {
+            var userId = User.Identity.GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                var cvm = PrepareClientVm(client, userId);
+
+                return View("AddEditClient", cvm);
+            }
+
+            if (client.Id == 0)
+                _clientRepository.Add(client);
+            else
+                _clientRepository.Update(client);
+
+            return RedirectToAction("Client");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteClient(int id)
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                _clientRepository.Delete(id, userId);
+            }
+            catch (Exception exception)
+            {
+                //logowanie
+                return Json(new { Success = false, Message = exception.Message }); ;
+            }
+
+            return Json(new { Success = true });
+        }
     }
 }
