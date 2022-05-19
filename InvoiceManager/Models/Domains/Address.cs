@@ -33,6 +33,8 @@ namespace InvoiceManager.Models
         [Display(Name = "Kod pocztowy")]
         public string PostalCode { get; set; }
 
+        public string Nip { get; set; }
+
 
 
         public ICollection<Client> Clients { get; set; }

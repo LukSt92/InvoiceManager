@@ -21,7 +21,9 @@ namespace InvoiceManager.Models.Repositories
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.Single(x => x.Id == clientId && x.UserId == userId);
+                return context.Clients
+                    .Include(x => x.Address)
+                    .Single(x => x.Id == clientId && x.UserId == userId);
             }
         }
 

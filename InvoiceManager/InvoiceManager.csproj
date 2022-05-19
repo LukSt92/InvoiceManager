@@ -190,9 +190,9 @@
     <Compile Include="Migrations\202205171910501_1705.designer.cs">
       <DependentUpon>202205171910501_1705.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205182021000_test1805.cs" />
-    <Compile Include="Migrations\202205182021000_test1805.designer.cs">
-      <DependentUpon>202205182021000_test1805.cs</DependentUpon>
+    <Compile Include="Migrations\202205191838003_test1905.cs" />
+    <Compile Include="Migrations\202205191838003_test1905.designer.cs">
+      <DependentUpon>202205191838003_test1905.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domains\Address.cs" />
@@ -458,8 +458,8 @@
     <EmbeddedResource Include="Migrations\202205171910501_1705.resx">
       <DependentUpon>202205171910501_1705.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205182021000_test1805.resx">
-      <DependentUpon>202205182021000_test1805.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205191838003_test1905.resx">
+      <DependentUpon>202205191838003_test1905.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
