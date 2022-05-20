@@ -23,9 +23,8 @@ namespace InvoiceManager.Models.Domains
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal NetPrice { get; set; }
 
-        [Display(Name = "Stawka VAT %")]
-        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
-        public decimal VatRate { get; set; }
+        [Display(Name = "Stawka Vat %")]
+        public int VatRate { get; set; }
 
         [Display(Name = "Kwota VAT")]
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
