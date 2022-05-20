@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.Product.VatAmount)
-                @Html.TextBoxFor(x => x.Product.VatAmount,
+                @Html.TextBoxFor(x => x.Product.VatAmount, "{0:C2}",
                 new { @class = "form-control", @readonly = "readonly" })
                 @Html.ValidationMessageFor(x => x.Product.VatAmount)
             </div>
@@ -64,6 +64,16 @@
 @section Scripts
 {
     <script>
+        $.validator.methods.range = function (value, element, param) {
+            var globalizedValue = value.replace(".", ",");
+            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+        }
+
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+        }
+
+
         function calculate() {
             var netprice = parseFloat($('#Product_NetPrice').val());
             var vatrate = parseFloat($('#Product_VatRate').val());
@@ -71,15 +81,17 @@
             var vatamount = netprice * vatrate / 100;
             var grossprice = netprice + vatamount;
 
-            $('#Product_VatAmount').val(vatamount.toFixed(2));
-            $('#Product_GrossPrice').val(grossprice.toFixed(2));
+            $('#Product_VatAmount').val(vatamount.toFixed(2).toString().replace(".", ","));
+            $('#Product_GrossPrice').val(grossprice.toFixed(2).toString().replace(".", ","));
         }
 
         $(document).ready(function () {
+
             $('#Product_NetPrice').change(calculate);
             $('#Product_VatRate').change(calculate);
             $(vatamount).change(calculate);
             $(grossprice).change(calculate);
+
         });
     </script>
 }

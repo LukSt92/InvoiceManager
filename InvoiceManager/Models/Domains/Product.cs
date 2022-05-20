@@ -20,15 +20,19 @@ namespace InvoiceManager.Models.Domains
         public string Name { get; set; }
 
         [Display(Name = "Cena Netto")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal NetPrice { get; set; }
 
-        [Display(Name = "Stawka VAT")]
+        [Display(Name = "Stawka VAT %")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal VatRate { get; set; }
 
         [Display(Name = "Kwota VAT")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal VatAmount { get; set; }
 
         [Display(Name = "Cena Brutto")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal GrossPrice { get; set; }
 
 
