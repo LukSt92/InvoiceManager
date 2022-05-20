@@ -134,7 +134,7 @@ namespace InvoiceManager.Controllers
                 return View("Invoice", vm);
             }
 
-            invoicePosition.Value = invoicePosition.Quantity * product.Value;
+            invoicePosition.Value = invoicePosition.Quantity * product.GrossPrice;
 
             if (invoicePosition.Id == 0)
                 _invoiceRepository.AddPosition(invoicePosition, userId);

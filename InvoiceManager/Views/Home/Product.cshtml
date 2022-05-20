@@ -20,23 +20,26 @@
         <tbody>
             @foreach (var product in Model)
             {
-                <tr>
-                    <td>
-                        <a class="fw-bold"
-                           href="@Url.Action("AddEditProduct", "Home", new { id =
+            <tr>
+                <td>
+                    <a class="fw-bold"
+                       href="@Url.Action("AddEditProduct", "Home", new { id =
                             product.Id})">
-                            @product.Name
-                        </a>
-                    </td>
-                    <td>@product.Value zł</td>
+                        @product.Name
+                    </a>
+                </td>
+                <td>@product.NetPrice zł</td>
+                <td>@product.VatRate %</td>
+                <td>@product.VatAmount zł</td>
+                <td>@product.GrossPrice zł</td>
 
-                    <td>
-                        <button class="btn btn-danger btn-sm"
-                                onclick="deleteProduct('@product.Id', this)">
-                            Usuń
-                        </button>
-                    </td>
-                </tr>
+                <td>
+                    <button class="btn btn-danger btn-sm"
+                            onclick="deleteProduct('@product.Id', this)">
+                        Usuń
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

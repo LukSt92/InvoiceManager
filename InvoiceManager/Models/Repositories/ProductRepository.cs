@@ -42,7 +42,10 @@ namespace InvoiceManager.Models.Repositories
                 var productToUpdate = context.Products.Single(x => x.Id == product.Id && x.UserId == product.UserId);
 
                 productToUpdate.Name = product.Name;
-                productToUpdate.Value = product.Value;
+                productToUpdate.NetPrice = product.NetPrice;
+                productToUpdate.VatRate = product.VatRate;
+                productToUpdate.VatAmount = product.VatAmount;
+                productToUpdate.GrossPrice = product.GrossPrice;
 
                 context.SaveChanges();
             }

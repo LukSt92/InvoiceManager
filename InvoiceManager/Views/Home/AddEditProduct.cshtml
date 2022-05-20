@@ -12,10 +12,10 @@
 
             if (Model.Product.Id == 0)
             {
-            <p class="alert alert-info mt-4 mb-4">
-                Wszystkie pola są
-                <strong>wymagane</strong>
-            </p>
+                <p class="alert alert-info mt-4 mb-4">
+                    Wszystkie pola są
+                    <strong>wymagane</strong>
+                </p>
             }
 
             @Html.HiddenFor(x => x.Product.Id)
@@ -30,15 +30,56 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(x => x.Product.Value)
-                @Html.TextBoxFor(x => x.Product.Value,
-                new { @class = "form-control", })
-                @Html.ValidationMessageFor(x => x.Product.Value)
+                @Html.LabelFor(x => x.Product.NetPrice)
+                @Html.TextBoxFor(x => x.Product.NetPrice,
+                new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Product.NetPrice)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Product.VatRate)
+                @Html.TextBoxFor(x => x.Product.VatRate,
+                new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Product.VatRate)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Product.VatAmount)
+                @Html.TextBoxFor(x => x.Product.VatAmount,
+                new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(x => x.Product.VatAmount)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Product.GrossPrice)
+                @Html.TextBoxFor(x => x.Product.GrossPrice,
+                new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(x => x.Product.GrossPrice)
             </div>
 
             <button class="btn btn-primary btn-lg mb-5" type="submit">
                 Zapisz
             </button>
         }
-        </div>
     </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function calculate() {
+            var netprice = parseFloat($('#Product_NetPrice').val());
+            var vatrate = parseFloat($('#Product_VatRate').val());
+
+            var vatamount = netprice * vatrate / 100;
+            var grossprice = netprice + vatamount;
+
+            $('#Product_VatAmount').val(vatamount.toFixed(2));
+            $('#Product_GrossPrice').val(grossprice.toFixed(2));
+        }
+
+        $(document).ready(function () {
+            $('#Product_NetPrice').change(calculate);
+            $('#Product_VatRate').change(calculate);
+            $(vatamount).change(calculate);
+            $(grossprice).change(calculate);
+        });
+    </script>
+}

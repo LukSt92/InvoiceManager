@@ -194,6 +194,18 @@
     <Compile Include="Migrations\202205191838003_test1905.designer.cs">
       <DependentUpon>202205191838003_test1905.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205191854383_testnr21905.cs" />
+    <Compile Include="Migrations\202205191854383_testnr21905.designer.cs">
+      <DependentUpon>202205191854383_testnr21905.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205192043264_testy3331905.cs" />
+    <Compile Include="Migrations\202205192043264_testy3331905.designer.cs">
+      <DependentUpon>202205192043264_testy3331905.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205192219447_test0002005.cs" />
+    <Compile Include="Migrations\202205192219447_test0002005.designer.cs">
+      <DependentUpon>202205192219447_test0002005.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domains\Address.cs" />
     <Compile Include="Models\Domains\Client.cs" />
@@ -460,6 +472,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205191838003_test1905.resx">
       <DependentUpon>202205191838003_test1905.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205191854383_testnr21905.resx">
+      <DependentUpon>202205191854383_testnr21905.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205192043264_testy3331905.resx">
+      <DependentUpon>202205192043264_testy3331905.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205192219447_test0002005.resx">
+      <DependentUpon>202205192219447_test0002005.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

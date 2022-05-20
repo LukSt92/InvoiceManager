@@ -10,6 +10,7 @@ namespace InvoiceManager.Models.Domains
         public Product()
         {
             InvoicePositions = new Collection<InvoicePosition>();
+                        
         }
 
         public int Id { get; set; }
@@ -18,12 +19,24 @@ namespace InvoiceManager.Models.Domains
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Wartość")]
-        public decimal Value { get; set; }
+        [Display(Name = "Cena Netto")]
+        public decimal NetPrice { get; set; }
+
+        [Display(Name = "Stawka VAT")]
+        public decimal VatRate { get; set; }
+
+        [Display(Name = "Kwota VAT")]
+        public decimal VatAmount { get; set; }
+
+        [Display(Name = "Cena Brutto")]
+        public decimal GrossPrice { get; set; }
+
 
         [Required]
         [ForeignKey("User")]
         public string UserId { get; set; }
+
+
 
 
 
