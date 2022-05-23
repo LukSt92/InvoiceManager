@@ -20,6 +20,8 @@ namespace InvoiceManager.Models
         public DbSet<MethodofPayment> MethodofPayments { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<UnitofMeasure> UnitofMeasures { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

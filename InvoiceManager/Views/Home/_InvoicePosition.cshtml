@@ -9,36 +9,33 @@
                 <th scope="col">Lp</th>
                 <th scope="col">Produkt</th>
                 <th scope="col">Ilość</th>
-                <th scope="col">Wartość</th>
+                <th scope="col">J.m.</th>
+                <th scope="col">Cena <br />netto</th>
+                <th scope="col">Wartość <br />netto</th>
+                <th scope="col">Stawka <br />Vat</th>
+                <th scope="col">Kwota <br />Vat</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var position in Model)
             {
-                <tr>
-                    <td>
-                        <a class="fw-bold"
-                           href="
-                       @Url.Action("InvoicePosition", "Home",
-                            new
-                            {
-                             invoiceId = position.InvoiceId,
-                             invoicePositionId = position.Id
-                            })">
-                            @position.Lp
-                        </a>
-                    </td>
-                    <td>@position.Product.Name</td>
-                    <td>@position.Quantity</td>
-                    <td>@position.Value zł</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm"
-                                onclick="deleteInvoicePosition('@position.Id', '@position.InvoiceId', this)">
-                            Usuń
-                        </button>
-                    </td>
-                </tr>
+            <tr>
+                <td>@position.Lp</td>
+                <td>@position.Product.Name</td>
+                <td>@position.Quantity</td>
+                <td>@position.UnitofMeasure.Name</td>
+                <td>@position.Product.NetPrice zł</td>
+                <td>@position.NetValue zł</td>
+                <td>@position.Product.VatRate %</td>
+                <td>@position.VatValue zł</td>
+                <td>
+                    <button class="btn btn-danger btn-sm"
+                            onclick="deleteInvoicePosition('@position.Id', '@position.InvoiceId', this)">
+                        Usuń
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
 

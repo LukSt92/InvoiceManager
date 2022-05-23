@@ -11,5 +11,7 @@ namespace InvoiceManager.Models.ViewModels
         public InvoicePosition InvoicePosition { get; set; }
         public string Heading { get; set; }
         public List<Product> Products { get; set; }
+
+        public List<UnitofMeasure> UnitofMeasures { get; set; }
     }
 }

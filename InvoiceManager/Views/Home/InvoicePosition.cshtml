@@ -20,12 +20,7 @@
         @Html.HiddenFor(x => x.InvoicePosition.Id)
         @Html.HiddenFor(x => x.InvoicePosition.InvoiceId)
 
-        <div class="form-group">
-            @Html.LabelFor(x => x.InvoicePosition.Lp)
-            @Html.TextBoxFor(x => x.InvoicePosition.Lp,
-            new { @class = "form-control", autofocus = "autofocus" })
-            @Html.ValidationMessageFor(x => x.InvoicePosition.Id)
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(x => x.InvoicePosition.ProductId)
@@ -41,16 +36,26 @@
             @Html.TextBoxFor(x => x.InvoicePosition.Quantity,
             new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.InvoicePosition.Quantity)
+        </div>
 
-            @if (Model.InvoicePosition.Id != 0)
-            {
-                <div class="form-group">
-                    @Html.LabelFor(x => x.InvoicePosition.Value)
-                    @Html.TextBoxFor(x => x.InvoicePosition.Value,
-                    new { @class = "form-control", @readonly = "readonly" })
-                </div>
-            }
+        <div class="form-group">
+            @Html.LabelFor(x => x.InvoicePosition.UnitofMeasureId)
+            @Html.DropDownListFor(x => x.InvoicePosition.UnitofMeasureId,
+            new SelectList(Model.UnitofMeasures, "Id", "Name"),
+            "-- Wybierz jednostkę miary --",
+            new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.InvoicePosition.UnitofMeasureId)
+        </div>
 
+        if (Model.InvoicePosition.Id != 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(x => x.InvoicePosition.Value)
+                @Html.TextBoxFor(x => x.InvoicePosition.Value,
+                new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        }
+        <div>
             <button class="btn btn-primary btn-lg mb-5" type="submit">
                 Zapisz
             </button>
@@ -61,6 +66,7 @@
 @section Scripts
 {
     <script type="text/javascript">
+
 
         $(document).ready(function () {
 

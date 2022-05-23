@@ -84,7 +84,9 @@ namespace InvoiceManager.Controllers
             {
                 InvoicePosition = invoicePosition,
                 Heading = invoicePosition.Id == 0 ? "Dodawanie nowej pozycji" : "Pozycja",
-                Products = _productRepository.GetProducts(userId)
+                Products = _productRepository.GetProducts(userId),
+                UnitofMeasures = _invoiceRepository.GetUnitsofMeasures()
+
             };
         }
 
@@ -123,6 +125,7 @@ namespace InvoiceManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult InvoicePosition(InvoicePosition invoicePosition)
         {
+
             var userId = User.Identity.GetUserId();
 
             var product = _productRepository
@@ -134,7 +137,13 @@ namespace InvoiceManager.Controllers
                 return View("Invoice", vm);
             }
 
+            
+
             invoicePosition.Value = invoicePosition.Quantity * product.GrossPrice;
+
+            invoicePosition.NetValue = invoicePosition.Quantity * product.NetPrice;
+
+            invoicePosition.VatValue = invoicePosition.Quantity * product.VatAmount;
 
             if (invoicePosition.Id == 0)
                 _invoiceRepository.AddPosition(invoicePosition, userId);

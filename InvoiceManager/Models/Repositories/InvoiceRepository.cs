@@ -27,6 +27,8 @@ namespace InvoiceManager.Models.Repositories
                     .Include(x => x.InvoicePositions)
                     .Include(x => x.InvoicePositions
                     .Select(y => y.Product))
+                    .Include(x => x.InvoicePositions
+                    .Select(y => y.UnitofMeasure))
                     .Include(x => x.MethodofPayment)
                     .Include(x => x.User)
                     .Include(x => x.User.Address)
@@ -82,6 +84,7 @@ namespace InvoiceManager.Models.Repositories
 
         public void AddPosition(InvoicePosition invoicePosition, string userId)
         {
+
             using (var context = new ApplicationDbContext())
             {
                 var invoice = context.Invoices
@@ -91,6 +94,14 @@ namespace InvoiceManager.Models.Repositories
 
                 context.InvoicePositions.Add(invoicePosition);
                 context.SaveChanges();
+            }
+        }
+
+        public List<UnitofMeasure> GetUnitsofMeasures()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return context.UnitofMeasures.ToList();
             }
         }
 
@@ -107,7 +118,10 @@ namespace InvoiceManager.Models.Repositories
                 positionToUpdate.Lp = invoicePosition.Lp;
                 positionToUpdate.ProductId = invoicePosition.ProductId;
                 positionToUpdate.Quantity = invoicePosition.Quantity;
+                positionToUpdate.UnitofMeasureId = invoicePosition.UnitofMeasureId;
                 positionToUpdate.Value = positionToUpdate.Product.GrossPrice * invoicePosition.Value;
+                positionToUpdate.NetValue = invoicePosition.NetValue;
+                positionToUpdate.VatValue = invoicePosition.VatValue;
 
                 context.SaveChanges();
 
