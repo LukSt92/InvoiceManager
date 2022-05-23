@@ -150,7 +150,9 @@ namespace InvoiceManager.Controllers
             else
                 _invoiceRepository.UpdatePosition(invoicePosition, userId);
 
-            _invoiceRepository.UpdateInvoiceValue(invoicePosition.InvoiceId, userId);
+            _invoiceRepository.UpdateInvoiceNetValue(invoicePosition.InvoiceId, userId);
+            _invoiceRepository.UpdateInvoiceGrossValue(invoicePosition.InvoiceId, userId);
+
 
             return RedirectToAction("Invoice",
                 new { id = invoicePosition.InvoiceId });
@@ -177,14 +179,16 @@ namespace InvoiceManager.Controllers
         [HttpPost]
         public ActionResult DeletePosition(int id, int invoiceId)
         {
-            var invoiceValue = 0m;
+            var invoiceNetValue = 0m;
+            var invoiceGrossValue = 0m;
 
 
             try
             {
                 var userId = User.Identity.GetUserId();
                 _invoiceRepository.DeletePosition(id, userId);
-                 invoiceValue = _invoiceRepository.UpdateInvoiceValue(invoiceId, userId);
+                 invoiceNetValue = _invoiceRepository.UpdateInvoiceNetValue(invoiceId, userId);
+                invoiceGrossValue = _invoiceRepository.UpdateInvoiceGrossValue(invoiceId, userId);
             }
             catch (Exception exception)
             {
@@ -193,7 +197,7 @@ namespace InvoiceManager.Controllers
             }
 
 
-            return Json(new { Success = true, InvoiceValue = invoiceValue });
+            return Json(new { Success = true, InvoiceNetValue = invoiceNetValue, InvoiceGrossValue = invoiceGrossValue });
         }
 
         [AllowAnonymous]

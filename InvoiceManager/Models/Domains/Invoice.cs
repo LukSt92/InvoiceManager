@@ -21,8 +21,11 @@ namespace InvoiceManager.Models.Domains
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
-        [Display(Name = "Wartość")]
-        public decimal Value { get; set; }
+        [Display(Name = "Wartość netto")]
+        public decimal NetValue { get; set; }
+
+        [Display(Name = "Wartość brutto")]
+        public decimal GrossValue { get; set; }
 
         [Required(ErrorMessage = "Pole Sposób płatności jest wymagane")]
         [Display(Name = "Sposób płatności")]

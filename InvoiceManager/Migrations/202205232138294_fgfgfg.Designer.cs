@@ -7,13 +7,13 @@ namespace InvoiceManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class hjk : IMigrationMetadata
+    public sealed partial class fgfgfg : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(hjk));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fgfgfg));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205231912283_hjk"; }
+            get { return "202205232138294_fgfgfg"; }
         }
         
         string IMigrationMetadata.Source

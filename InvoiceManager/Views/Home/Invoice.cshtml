@@ -58,8 +58,13 @@
             if (Model.Invoice.Id != 0)
             {
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Invoice.Value)
-                    @Html.TextBoxFor(x => x.Invoice.Value,
+                    @Html.LabelFor(x => x.Invoice.NetValue)
+                    @Html.TextBoxFor(x => x.Invoice.NetValue,
+                    new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Invoice.GrossValue)
+                    @Html.TextBoxFor(x => x.Invoice.GrossValue,
                     new { @class = "form-control", @readonly = "readonly" })
                 </div>
             }
@@ -160,7 +165,8 @@
                     var row = btn.parentNode.parentNode;
                     row.parentNode.removeChild(row);
 
-                    $('#Invoice_Value').val(data.InvoiceValue.toFixed(2).replace(".", ","));
+                    $('#Invoice_NetValue').val(data.InvoiceNetValue.toFixed(2).replace(".", ","));
+                    $('#Invoice_GrossValue').val(data.InvoiceGrossValue.toFixed(2).replace(".", ","));
 
                 } else {
                     alert(data.Message);

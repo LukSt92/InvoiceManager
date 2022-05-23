@@ -17,11 +17,12 @@
     <table class="table table-hover table-striped mt-3 mb-5">
         <thead>
             <tr>
-                <th scope="col">Tytuł</th>
-                <th scope="col">Klient</th>
-                <th scope="col">Wartość</th>
-                <th scope="col">Data utworzenia</th>
-                <th scope="col">Data płatności</th>
+                <th scope="col">Tytuł:</th>
+                <th scope="col">Klient:</th>
+                <th scope="col">Wartość Netto:</th>
+                <th scope="col">Wartość Brutto:</th>
+                <th scope="col">Data utworzenia:</th>
+                <th scope="col">Data płatności:</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -30,21 +31,21 @@
             {
             <tr>
                 <td>
-                    <a 
-                       class="fw-bold"
+                    <a class="fw-bold"
                        href="@Url.Action("Invoice", "Home", new { id =
                             invoice.Id})">
-                    @invoice.Title
+                        @invoice.Title
                     </a>
                 </td>
                 <td>@invoice.Client.Name</td>
-                <td>@invoice.Value zł</td>
+                <td>@invoice.NetValue zł</td>
+                <td>@invoice.GrossValue zł</td>
                 <td>@invoice.CreatedDate.ToString("dd-MM-yyyy")</td>
                 <td>@invoice.PaymentDate.ToString("dd-MM-yyyy")</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" 
+                    <button class="btn btn-danger btn-sm"
                             onclick="deleteInvoice('@invoice.Id', this)">
-                    Usuń
+                        Usuń
                     </button>
                 </td>
             </tr>

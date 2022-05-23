@@ -128,7 +128,7 @@ namespace InvoiceManager.Models.Repositories
             }
         }
 
-        public decimal UpdateInvoiceValue(int invoiceId, string userId)
+        public decimal UpdateInvoiceNetValue(int invoiceId, string userId)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -136,10 +136,25 @@ namespace InvoiceManager.Models.Repositories
                     .Include(x => x.InvoicePositions)
                     .Single(x => x.Id == invoiceId && x.UserId == userId);
 
-                invoice.Value = invoice.InvoicePositions.Sum(x => x.Value);
+                invoice.NetValue = invoice.InvoicePositions.Sum(x => x.NetValue);
 
                 context.SaveChanges();
-                return invoice.Value;
+                return invoice.NetValue;
+            }
+        }
+
+        public decimal UpdateInvoiceGrossValue(int invoiceId, string userId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var invoice = context.Invoices
+                    .Include(x => x.InvoicePositions)
+                    .Single(x => x.Id == invoiceId && x.UserId == userId);
+
+                invoice.GrossValue = invoice.InvoicePositions.Sum(x => x.NetValue) + invoice.InvoicePositions.Sum(x => x.VatValue);
+
+                context.SaveChanges();
+                return invoice.GrossValue;
             }
         }
 

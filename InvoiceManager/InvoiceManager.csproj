@@ -230,9 +230,9 @@
     <Compile Include="Migrations\202205231904197_bb.designer.cs">
       <DependentUpon>202205231904197_bb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205231912283_hjk.cs" />
-    <Compile Include="Migrations\202205231912283_hjk.designer.cs">
-      <DependentUpon>202205231912283_hjk.cs</DependentUpon>
+    <Compile Include="Migrations\202205232138294_fgfgfg.cs" />
+    <Compile Include="Migrations\202205232138294_fgfgfg.designer.cs">
+      <DependentUpon>202205232138294_fgfgfg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domains\Address.cs" />
@@ -529,8 +529,8 @@
     <EmbeddedResource Include="Migrations\202205231904197_bb.resx">
       <DependentUpon>202205231904197_bb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205231912283_hjk.resx">
-      <DependentUpon>202205231912283_hjk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205232138294_fgfgfg.resx">
+      <DependentUpon>202205232138294_fgfgfg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
