@@ -96,7 +96,7 @@ namespace InvoiceManager.Controllers
             return new InvoicePosition
             {
                 InvoiceId = invoiceId,
-                Id = invoicePositionId
+                Id = invoicePositionId, 
             };
         }
 

@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<InvoiceManager.Models.Domains.InvoicePosition>
+    @{ var i = 0; }
 
 <div class="row">
     <h2>Pozycje faktury</h2>
 
-    <table class="table table-hover table-striped mt-3 mb-5">
+    <table class="table table-hover table-striped mt-3 mb-5 test">
         <thead>
             <tr>
                 <th scope="col">Lp</th>
@@ -20,24 +21,32 @@
         <tbody>
             @foreach (var position in Model)
             {
-            <tr>
-                <td>@position.Lp</td>
-                <td>@position.Product.Name</td>
-                <td>@position.Quantity</td>
-                <td>@position.UnitofMeasure.Name</td>
-                <td>@position.Product.NetPrice zł</td>
-                <td>@position.NetValue zł</td>
-                <td>@position.Product.VatRate %</td>
-                <td>@position.VatValue zł</td>
-                <td>
-                    <button class="btn btn-danger btn-sm"
-                            onclick="deleteInvoicePosition('@position.Id', '@position.InvoiceId', this)">
-                        Usuń
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                    @{i++;}
+                    @i.
+                    </td>
+                    <td>@position.Product.Name</td>
+                    <td>@position.Quantity</td>
+                    <td>@position.UnitofMeasure.Name</td>
+                    <td>@position.Product.NetPrice zł</td>
+                    <td>@position.NetValue zł</td>
+                    <td>@position.Product.VatRate %</td>
+                    <td>@position.VatValue zł</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm"
+                                onclick="deleteInvoicePosition('@position.Id', '@position.InvoiceId', this)">
+                            Usuń
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
 
     </table>
 </div>
+
+@section Scripts
+{
+
+}

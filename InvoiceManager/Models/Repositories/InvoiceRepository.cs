@@ -92,6 +92,7 @@ namespace InvoiceManager.Models.Repositories
                     x.Id == invoicePosition.InvoiceId &&
                     x.UserId == userId);
 
+
                 context.InvoicePositions.Add(invoicePosition);
                 context.SaveChanges();
             }

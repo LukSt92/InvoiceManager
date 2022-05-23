@@ -45,7 +45,8 @@ namespace InvoiceManager.Models
                 .HasMany(x => x.Products)
                 .WithRequired(x => x.User)
                 .HasForeignKey(x => x.UserId)
-                .WillCascadeOnDelete(false);    
+                .WillCascadeOnDelete(false);
+
 
             base.OnModelCreating(modelBuilder);
         }
