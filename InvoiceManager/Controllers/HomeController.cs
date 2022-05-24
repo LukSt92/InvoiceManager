@@ -136,11 +136,7 @@ namespace InvoiceManager.Controllers
                 var vm = PrepareInvoicePositionVm(invoicePosition);
                 return View("Invoice", vm);
             }
-
-            
-
-            invoicePosition.Value = invoicePosition.Quantity * product.GrossPrice;
-
+                                    
             invoicePosition.NetValue = invoicePosition.Quantity * product.NetPrice;
 
             invoicePosition.VatValue = invoicePosition.Quantity * product.VatAmount;

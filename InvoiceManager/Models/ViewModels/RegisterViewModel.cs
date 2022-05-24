@@ -17,10 +17,10 @@ namespace InvoiceManager.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź Hasło")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Wpisane hasła się nie zgadzają.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Nazwa")]
+        [Display(Name = "Imię i nazwisko")]
         public string Name { get; set; }
 
         public Address Address { get; set; }

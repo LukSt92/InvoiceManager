@@ -52,6 +52,8 @@ namespace InvoiceManager.Models.Repositories
             {
                 return context.InvoicePositions
                     .Include(x => x.Invoice)
+                    .Include(x => x.Product)
+                    .Include(x => x.UnitofMeasure)
                     .Single(x => x.Id == invoicePositionId && x.Invoice.UserId == userId);
             }
         }
@@ -116,11 +118,9 @@ namespace InvoiceManager.Models.Repositories
                     .Single(x =>
                         x.Id == invoicePosition.Id && x.Invoice.UserId == userId);
 
-                positionToUpdate.Lp = invoicePosition.Lp;
                 positionToUpdate.ProductId = invoicePosition.ProductId;
                 positionToUpdate.Quantity = invoicePosition.Quantity;
                 positionToUpdate.UnitofMeasureId = invoicePosition.UnitofMeasureId;
-                positionToUpdate.Value = positionToUpdate.Product.GrossPrice * invoicePosition.Value;
                 positionToUpdate.NetValue = invoicePosition.NetValue;
                 positionToUpdate.VatValue = invoicePosition.VatValue;
 

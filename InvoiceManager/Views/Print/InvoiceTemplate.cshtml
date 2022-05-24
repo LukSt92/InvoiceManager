@@ -1,5 +1,5 @@
 ﻿@model InvoiceManager.Models.Domains.Invoice
-
+@{ var i = 0; }
 
 @{
     ViewBag.Title = "Faktura";
@@ -17,10 +17,6 @@
     </div>
 
     <div class="row mt-5">
-
-        <div class="col-5">
-            <img src="@Url.Content("~/Content/Images/Logo.png")" alt="Logo" class="logo" />
-        </div>
 
         <div class="col-4 offset-3">
             <div class="top-line">
@@ -58,6 +54,7 @@
                     Sprzedawca:
                 </div>
                 <div>@Model.User.Name</div>
+                <div>Nip: @Model.User.Address.Nip</div>
                 <div>@Model.User.Address.Street @Model.User.Address.Number</div>
                 <div>@Model.User.Address.PostalCode @Model.User.Address.City</div>
                 <div>E-mail: @Model.User.Email</div>
@@ -69,6 +66,7 @@
                     Nabywca:
                 </div>
                 <div>@Model.Client.Name</div>
+                <div>Nip: @Model.Client.Address.Nip</div>
                 <div>@Model.Client.Address.Street @Model.Client.Address.Number</div>
                 <div>@Model.Client.Address.PostalCode @Model.Client.Address.City</div>
                 <div>E-mail: @Model.Client.Email</div>
@@ -79,39 +77,48 @@
     <table class="table table-bordered mt-5">
         <thead>
             <tr>
-                <th>Lp</th>
+                <th>Lp.</th>
                 <th>Produkt</th>
                 <th>Ilość</th>
-                <th>Wartość</th>
+                <th>J.m.</th>
+                <th>Cena <br />netto</th>
+                <th>Wartość <br />netto</th>
+                <th>Stawka <br />Vat</th>
+                <th>Kwota <br/>Vat</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var pozycja in Model.InvoicePositions)
+            @foreach (var position in Model.InvoicePositions)
             {
-                <tr>
-                    <td>@pozycja.Lp</td>
-                    <td>@pozycja.Product.Name</td>
-                    <td>@pozycja.Quantity</td>
-                    <td>@pozycja.Value</td>
-                </tr>
+            <tr>
+                <td>@{i++;}@i.</td>
+                <td>@position.Product.Name</td>
+                <td>@position.Quantity</td>
+                <td>@position.UnitofMeasure.Name</td>
+                <td>@position.Product.NetPrice zł</td>
+                <td>@position.NetValue zł</td>
+                <td>@position.Product.VatRate %</td>
+                <td>@position.VatValue zł</td>
+            </tr>
             }
 
-            
+
         </tbody>
     </table>
 
     <div class="row">
         <div class="col-12">
-            <div style="text-align:right">Wartość: <strong>@Model.Value zł</strong></div>
+            <div style="text-align:right">Netto: <strong>@Model.NetValue zł</strong></div>
+            <div class="mt-2" style="text-align:right">Brutto: <strong>@Model.GrossValue zł</strong></div>
 
-            @if (!string.IsNullOrWhiteSpace(Model.Comments))
-            {
-                <div style="text-align:left">Uwagi: @Model.Comments</div>
-            }
+                @if (!string.IsNullOrWhiteSpace(Model.Comments))
+                {
+                    <div style="text-align:left">Uwagi: @Model.Comments</div>
+                }
         </div>
     </div>
 
-    <div class="row mr-5">
+    <div class="row mr-5 mt-3">
         <div class="col-6">
             <div>Wystawił:</div>
             <div>@Model.User.Name</div>

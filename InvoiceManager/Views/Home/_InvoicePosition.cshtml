@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<InvoiceManager.Models.Domains.InvoicePosition>
-    @{ var i = 0; }
+@{ var i = 0; }
 
 <div class="row">
     <h2>Pozycje faktury</h2>
@@ -23,8 +23,12 @@
             {
                 <tr>
                     <td>
-                    @{i++;}
-                    @i.
+                        <a class="fw-bold"
+                           href="@Url.Action("InvoicePosition", "Home", new { invoiceId =
+                            position.Invoice.Id, InvoicePositionId = position.Id})">
+                            @{i++;}
+                            @i .
+                        </a>
                     </td>
                     <td>@position.Product.Name</td>
                     <td>@position.Quantity</td>
@@ -46,7 +50,3 @@
     </table>
 </div>
 
-@section Scripts
-{
-
-}

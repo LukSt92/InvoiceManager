@@ -5,19 +5,14 @@ namespace InvoiceManager.Models.Domains
     public class InvoicePosition
     {
         public int Id { get; set; }
-
-        
-        public int Lp { get; set; }
         public int InvoiceId { get; set; }
 
-        [Required(ErrorMessage = "Pole Wartość jest wymagane")]
-        [Display(Name = "Wartość")]
-        public decimal Value { get; set; }
-
         [Required]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal NetValue { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal VatValue { get; set; }
 
         [Required(ErrorMessage = "Pole Produkt jest wymagane")]
