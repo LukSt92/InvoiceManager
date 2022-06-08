@@ -59,12 +59,12 @@
             {
                 <div class="form-group">
                     @Html.LabelFor(x => x.Invoice.NetValue)
-                    @Html.TextBoxFor(x => x.Invoice.NetValue,
+                    @Html.TextBoxFor(x => x.Invoice.NetValue, "{0:C}",
                     new { @class = "form-control", @readonly = "readonly" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(x => x.Invoice.GrossValue)
-                    @Html.TextBoxFor(x => x.Invoice.GrossValue,
+                    @Html.TextBoxFor(x => x.Invoice.GrossValue, "{0:C}",
                     new { @class = "form-control", @readonly = "readonly" })
                 </div>
             }

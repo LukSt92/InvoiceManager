@@ -21,9 +21,11 @@ namespace InvoiceManager.Models.Domains
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Display(Name = "Wartość netto")]
         public decimal NetValue { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Display(Name = "Wartość brutto")]
         public decimal GrossValue { get; set; }
 

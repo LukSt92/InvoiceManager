@@ -75,7 +75,7 @@
 
 
         function calculate() {
-            var netprice = parseFloat($('#Product_NetPrice').val());
+            var netprice = parseFloat($('#Product_NetPrice').val().replace(",","."));
             var vatrate = parseFloat($('#Product_VatRate').val());
 
             var vatamount = netprice * vatrate / 100;
