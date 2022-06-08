@@ -196,13 +196,6 @@ namespace InvoiceManager.Controllers
             return Json(new { Success = true, InvoiceNetValue = invoiceNetValue, InvoiceGrossValue = invoiceGrossValue });
         }
 
-        [AllowAnonymous]
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
         
         [AllowAnonymous]
         public ActionResult Contact()
